@@ -1,0 +1,7 @@
+> const crypto = require('crypto')
+undefined
+> const id = crypto.randomBytes(8).toString('hex')
+undefined
+> console.log('Random ID:', id)
+Random ID: 5d5ed5c64f5b3bf3
+undefined
