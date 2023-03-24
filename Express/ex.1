@@ -1,0 +1,35 @@
+// Dependencies
+const express = require('express');
+const dotenv = require('dotenv').config();
+const morgan = require('morgan');
+const asyncErrors = require('express-async-errors');
+
+// Express app
+const app = express();
+
+// Dummy database
+let planets = [
+  { id: 1, name: "Earth" },
+  { id: 2, name: "Mars" }
+];
+
+// Middleware
+app.use(express.json()); // Parse JSON requests
+app.use(morgan('dev')); // Log requests in console
+
+// Routes
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Internal Server Error');
+});
+
+// Start server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
